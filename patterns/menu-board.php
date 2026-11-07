@@ -22,6 +22,9 @@ ob_start();
 <!-- wp:heading -->
 <h2 class="wp-block-heading"><?php echo esc_html__( 'Every Scoop, Listed', 'double-scoop-lite' ); ?></h2>
 <!-- /wp:heading -->
+<!-- wp:paragraph {"placeholder":"Order cut-off (filled in from WooCommerce > Settings > Shipping > Order ahead)","className":"is-style-order-cutoff"} -->
+<p class="is-style-order-cutoff"></p>
+<!-- /wp:paragraph -->
 <!-- wp:group {"layout":{"type":"default"},"className":"menu-board__group"} -->
 <div class="wp-block-group menu-board__group">
 <!-- wp:heading {"level":3} -->
@@ -524,6 +527,25 @@ ob_start();
 <!-- wp:paragraph {"className":"sc-lede-left sc-muted sc-allergens"} -->
 <p class="sc-lede-left sc-muted sc-allergens"><?php echo esc_html__( 'Our kitchen handles milk, eggs, wheat, oats and tree nuts (pistachio, hazelnut and walnut), so we cannot promise any item is free of them, even those marked vegan, dairy-free or GF. Please ask about allergens before you order.', 'double-scoop-lite' ); ?></p>
 <!-- /wp:paragraph -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading"><?php echo esc_html__( 'Today\'s churn schedule', 'double-scoop-lite' ); ?></h3>
+<!-- /wp:heading -->
+<!-- wp:list {"className":"is-style-schedule"} -->
+<ul class="wp-block-list is-style-schedule">
+<!-- wp:list-item -->
+<li><?php echo esc_html__( '10:00 AM · Classics: stracciatella, pistachio and the chocolates', 'double-scoop-lite' ); ?></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><?php echo esc_html__( '12:00 PM · Sorbets: mango chili-lime, raspberry lemon and passion fruit', 'double-scoop-lite' ); ?></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><?php echo esc_html__( '3:00 PM · Seasonal: strawberry balsamic and the flavour of the day', 'double-scoop-lite' ); ?></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><?php echo esc_html__( '6:00 PM · Evening top-up: whatever ran low', 'double-scoop-lite' ); ?></li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
 </section>
 <!-- /wp:group -->
 <?php
