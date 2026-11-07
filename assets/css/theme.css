@@ -1,0 +1,288 @@
+/* Shared by every theme (tools/build-theme.mjs). */
+.site-main > .alignfull { margin-block: 0; }
+.wp-site-blocks > footer { margin-block-start: 0; }
+/* A long menu wraps instead of running past the edge: the Theme Unit Test's
+   twenty nested pages in the fallback menu pushed Mirror Glaze Lite's header
+   35px wide of a 1280px window. */
+.site-header__bar > .wp-block-navigation { min-width: 0; flex: 1 1 auto; justify-content: flex-end; }
+.site-header .wp-block-navigation__container { flex-wrap: wrap; justify-content: flex-end; row-gap: 0.25rem; }
+/* The menu sits at the inline end, so its submenus open back towards the start: WordPress opens
+   nested ones to the right, past the page edge (found the same way). A closed
+   submenu is only hidden, so even shut it made the page scroll sideways. One
+   class more than core's own rule, which loads after this file. */
+.site-header .wp-block-navigation .has-child .wp-block-navigation__submenu-container { inset-inline-start: auto; inset-inline-end: 0; }
+.site-header .wp-block-navigation .has-child .wp-block-navigation__submenu-container .wp-block-navigation__submenu-container { inset-inline-start: auto; inset-inline-end: 100%; }
+/* And a long page name in a dropdown wraps inside it instead of running out of
+   it: a link set not to wrap ran 88px past its closed dropdown. */
+.site-header .wp-block-navigation__submenu-container { max-width: min(18rem, calc(100vw - 2rem)); }
+.site-header .wp-block-navigation__submenu-container .wp-block-navigation-item__content { white-space: normal; overflow-wrap: anywhere; }
+/* Preformatted text scrolls inside its own box: a poem's long lines in a <pre>
+   (Theme Unit Test, "Markup: HTML Tags and Formatting") made the page 88px wide. */
+.wp-site-blocks pre { max-width: 100%; overflow-x: auto; }
+/* Photo credits (tools/lib/credits.mjs): closed until asked for, links in the
+   footer's own colour like the legal line above. */
+.site-footer__credits summary { cursor: pointer; }
+.site-footer__credits a { color: inherit; }
+.site-footer__credits summary + p { margin-block-start: 0.5em; }
+.site-footer__credits ul { padding-inline-start: 1.25em; margin-block: 0.5em 0; }
+
+/* Double Scoop — what theme.json cannot say. Printed inline (inc/setup.php). */
+
+.is-style-eyebrow {
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent);
+	margin-bottom: 0.5rem;
+}
+
+.site-header { border-bottom: 1px solid var(--wp--preset--color--border-light); padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.site-header .wp-block-site-title { font-family: var(--wp--preset--font-family--display); }
+.site-header .wp-block-navigation a { color: var(--wp--preset--color--text-muted); font-weight: 600; }
+.site-header .wp-block-navigation a:hover { color: var(--wp--preset--color--accent); }
+.site-footer { padding-top: 3.5rem; padding-bottom: 2rem; }
+.site-footer .wp-block-site-title { font-family: var(--wp--preset--font-family--display); }
+.site-footer a { color: var(--wp--preset--color--dark-text); }
+.site-footer__legal { margin-top: 2.5rem; border-top: 1px solid var(--wp--preset--color--dark-border); padding-top: 1.25rem; }
+.site-main { margin-top: 0; }
+.site-page { padding-top: 3rem; padding-bottom: 4rem; }
+
+.sc-section { padding-top: clamp(3.5rem, 8vw, 6rem); padding-bottom: clamp(3.5rem, 8vw, 6rem); }
+.sc-section > * { max-width: 72rem; margin-inline: auto !important; }
+.sc-lede { max-width: 40rem; margin-inline: auto; }
+
+/* Sections set their 72rem column on the block, and core's layout rule for
+   it outranks a single class: the intro keeps its 40rem measure here. */
+.sc-section > .sc-lede { max-width: 40rem; }
+.sc-lede-left { max-width: 34rem; }
+/* As a direct child of a section, an intro starts where the section's
+   centred 72rem column starts (as its heading does) and keeps its measure.
+   Margins, not padding: the editor resolves widths differently. */
+.sc-section > .sc-lede-left { max-width: 34rem; margin-inline-start: max(0px, (100% - 72rem) / 2) !important; margin-inline-end: auto !important; }
+.sc-muted { color: var(--wp--preset--color--text-muted); }
+.sc-center { justify-content: center; }
+
+/* Buttons: the raspberry secondary, and outlines on the dark band. */
+.sc-btn-secondary .wp-block-button__link { background: var(--wp--preset--color--secondary); color: var(--wp--preset--color--surface); }
+.sc-btn-secondary .wp-block-button__link:hover { background: var(--wp--preset--color--secondary-dark); }
+.sc-on-dark .wp-block-button__link { border-color: var(--wp--preset--color--accent-light); color: var(--wp--preset--color--accent-light); }
+
+/* Hero: text and today's flavour beside a tall photo, then four stat tiles. */
+.sc-hero { padding-top: clamp(3rem, 7vw, 5.5rem); }
+.sc-hero h1 { line-height: 1.15; color: var(--wp--preset--color--accent); }
+.sc-hero__photo { margin: 0; }
+.sc-hero__photo img { display: block; width: 100%; max-width: 24rem; margin-inline-start: auto; height: auto; aspect-ratio: 5 / 6; object-fit: cover; border-radius: 1.5rem; }
+.sc-fotd-mini { border: 1px solid var(--wp--preset--color--secondary-pale); border-radius: 1rem; padding: 1.25rem 1.5rem; max-width: 30rem; }
+.sc-fotd-mini > * { margin-top: 0.25rem; margin-bottom: 0; }
+.sc-fotd-mini__label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--wp--preset--color--secondary); margin-top: 0; }
+.sc-fotd-mini__name { font-family: var(--wp--preset--font-family--display); font-size: 1.375rem; color: var(--wp--preset--color--secondary-dark); }
+.sc-fotd-mini .wp-block-buttons { margin-top: 0.75rem; }
+.sc-stats { margin-top: 3.5rem; gap: 1.25rem; }
+.sc-stat { border-radius: 1rem; padding: 1.25rem 1rem; margin: 0 !important; }
+.sc-stat__value { font-family: var(--wp--preset--font-family--display); font-size: clamp(1.375rem, 2.6vw, 1.75rem); color: var(--wp--preset--color--accent); line-height: 1.3; margin: 0; }
+.sc-stat__label { font-size: 0.875rem; color: var(--wp--preset--color--text-muted); margin: 0.25rem 0 0; }
+@media (max-width: 781px) {
+	.sc-hero__photo img { margin-inline: auto; }
+}
+
+/* Today's flavour: the pink band and its feature card. */
+.sc-fotd { border: 2px solid var(--wp--preset--color--secondary); border-radius: 1.5rem; padding: clamp(1.5rem, 4vw, 2.5rem); margin-top: 2rem; }
+/* Content at the start edge, not centred in the card (the template's
+   illustration beside it is not carried over). */
+.wp-block-group.sc-fotd > * { max-width: 40rem; margin-inline-start: 0 !important; }
+.sc-fotd__name { font-family: var(--wp--preset--font-family--display); font-size: clamp(1.75rem, 3.5vw, 2.25rem); margin-top: 0.25rem; }
+.sc-fotd__price { font-size: 1.25rem; font-weight: 700; }
+.sc-rotation-title { font-family: var(--wp--preset--font-family--display); font-size: 1.5rem; margin-top: 3.5rem; }
+
+/* Cards: the rotation, the menu, the locations. */
+.sc-cards { gap: 1.25rem; }
+.sc-card { background: var(--wp--preset--color--surface); border: 1px solid var(--wp--preset--color--border-base); border-radius: 1.25rem; padding: 1.25rem 1.375rem; margin: 0 !important; }
+.sc-card > * { margin-top: 0.5rem; margin-bottom: 0; }
+.sc-card > :first-child { margin-top: 0; }
+.sc-card__head { gap: 0.75rem; }
+.sc-card__name { font-family: var(--wp--preset--font-family--body); font-size: 1.0625rem; font-weight: 700; margin: 0; }
+.sc-card__price { font-weight: 700; white-space: nowrap; margin: 0; }
+.sc-card__desc { font-size: 0.875rem; color: var(--wp--preset--color--text-muted); }
+.sc-card__tags { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--wp--preset--color--accent-dark); }
+.sc-card__note { font-size: 0.8125rem; font-weight: 700; color: var(--wp--preset--color--secondary-dark); }
+.sc-menu-section { margin-top: 3rem; }
+.sc-menu-cat { font-size: clamp(1.5rem, 3vw, 2rem); border-bottom: 1px solid var(--wp--preset--color--border-base); padding-bottom: 0.5rem; }
+.sc-menu-intro { color: var(--wp--preset--color--text-muted); font-style: italic; font-size: 0.9375rem; }
+
+/* Order ahead: the dark band, one card per location. */
+.sc-dark a { color: var(--wp--preset--color--accent-light); }
+.sc-orders { gap: 1rem; margin-top: 2rem; margin-bottom: 1.5rem; }
+.sc-order { border: 1px solid var(--wp--preset--color--dark-border); border-radius: 1rem; padding: 1.25rem; margin: 0 !important; }
+.sc-order > * { margin-top: 0.25rem; margin-bottom: 0; }
+.sc-order__name { font-weight: 700; margin-top: 0; }
+.sc-order .wp-block-buttons { margin-top: 0.75rem; }
+
+/* Story: founder note, stat tiles, how we make it. */
+.sc-founder { border-inline-start: 4px solid var(--wp--preset--color--accent); border-radius: 0.75rem; padding: 0.75rem 1rem; }
+.sc-founder > * { margin: 0; }
+.sc-founder__name { font-weight: 700; color: var(--wp--preset--color--accent-dark); }
+.sc-founder__title { font-size: 0.8125rem; color: var(--wp--preset--color--text-muted); }
+.sc-story-stats { gap: 1rem; }
+.sc-how__title { font-family: var(--wp--preset--font-family--body); font-size: 1.0625rem; font-weight: 700; }
+.sc-story-stats + .sc-card { margin-top: 1rem !important; }
+.sc-checks, .sc-bullets { list-style: none; padding-inline-start: 0; }
+.sc-checks li, .sc-bullets li { position: relative; padding-inline-start: 1.5rem; margin-top: 0.625rem; font-size: 0.9375rem; color: var(--wp--preset--color--text-muted); }
+.sc-checks li::before { content: "✓"; position: absolute; inset-inline-start: 0; color: var(--wp--preset--color--accent); font-weight: 700; }
+.sc-bullets li::before { content: "•"; position: absolute; inset-inline-start: 0.25rem; color: var(--wp--preset--color--secondary); font-weight: 700; }
+
+/* Gallery: fixed crop, so images never shift the layout as they load. */
+.sc-gallery { gap: 1.25rem; margin-top: 1.5rem; }
+.sc-photo { margin: 0; border-radius: 1.25rem; overflow: hidden; background: var(--wp--preset--color--surface); }
+.sc-photo img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.sc-photo figcaption { margin: 0; padding: 0.75rem 1rem; font-size: 0.875rem; font-weight: 600; color: var(--wp--preset--color--text-strong); background: var(--wp--preset--color--surface); text-align: start; }
+
+/* Locations: hours per location. */
+.sc-loc__name { font-family: var(--wp--preset--font-family--display); font-size: 1.5rem; color: var(--wp--preset--color--accent); margin-top: 0.25rem !important; }
+.sc-hours { font-size: 0.875rem; }
+.sc-hours td { border: 0; border-bottom: 1px solid var(--wp--preset--color--border-light); padding: 0.5rem 0; vertical-align: top; }
+.sc-hours td:first-child { font-weight: 700; padding-inline-end: 0.75rem; }
+.sc-hours td:last-child { text-align: end; }
+
+:where(.wp-site-blocks) *:focus-visible { outline: 2px solid var(--wp--preset--color--accent); outline-offset: 2px; }
+.sc-dark :focus-visible, .site-footer :focus-visible { outline-color: var(--wp--preset--color--accent-light) !important; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.sc-allergens { margin-top: 3.5rem; font-size: 0.9375rem; }
+/* Food shop extras (tools/skeleton-food/, themes with "food"). Block styles on core blocks. */
+
+/* Section edges: a wave, scallops or a zigzag in the section's own colour, hanging from its
+   bottom over the top of whatever comes next. Drawn as a strip below the section rather than
+   cut out of it: a cut-out shows whatever is behind, and on Double Scoop that was the page
+   colour, a pale scalloped line between two dark sections, whatever the margins were
+   (2026-11-07). Decorative only, so it ignores the pointer and is not announced. */
+.wp-block-group.is-style-edge-wave,
+.wp-block-group.is-style-edge-scallop,
+.wp-block-group.is-style-edge-zigzag {
+	--food-edge: 1.25rem;
+	position: relative;
+	z-index: 1;
+}
+.wp-block-group.is-style-edge-wave::after,
+.wp-block-group.is-style-edge-scallop::after,
+.wp-block-group.is-style-edge-zigzag::after {
+	content: "";
+	position: absolute;
+	inset-inline: 0;
+	top: calc(100% - 1px);
+	height: calc(var(--food-edge) + 1px);
+	background: inherit;
+	pointer-events: none;
+	-webkit-mask: var(--food-edge-shape) top left / calc(var(--food-edge) * 4) 100% repeat-x;
+	mask: var(--food-edge-shape) top left / calc(var(--food-edge) * 4) 100% repeat-x;
+}
+.wp-block-group.is-style-edge-wave { --food-edge-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 20' preserveAspectRatio='none'%3E%3Cpath d='M0 0h80v10c-10 0-10 10-20 10S50 10 40 10 30 20 20 20 10 10 0 10z'/%3E%3C/svg%3E"); }
+.wp-block-group.is-style-edge-scallop { --food-edge-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0h40v0a10 10 0 0 1-20 0 10 10 0 0 1-20 0z'/%3E%3C/svg%3E"); --food-edge: 0.9rem; }
+.wp-block-group.is-style-edge-zigzag { --food-edge-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 20' preserveAspectRatio='none'%3E%3Cpath d='M0 0h40L20 20z'/%3E%3C/svg%3E"); --food-edge: 0.9rem; }
+
+/* Textures: a quiet pattern behind a section, in its accent colour at low strength, on a
+   layer under the content so text keeps its contrast with the section colour. */
+.wp-block-group.is-style-texture-dots,
+.wp-block-group.is-style-texture-sprinkles { position: relative; isolation: isolate; }
+.wp-block-group.is-style-texture-dots::before,
+.wp-block-group.is-style-texture-sprinkles::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background: var(--wp--preset--color--accent);
+	opacity: 0.1;
+}
+.wp-block-group.is-style-texture-dots::before {
+	-webkit-mask: radial-gradient(circle, #000 1.5px, transparent 2px) 0 0 / 18px 18px;
+	mask: radial-gradient(circle, #000 1.5px, transparent 2px) 0 0 / 18px 18px;
+}
+.wp-block-group.is-style-texture-sprinkles::before {
+	opacity: 0.16;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg%3E%3Crect x='10' y='14' width='14' height='4' rx='2' transform='rotate(30 17 16)'/%3E%3Crect x='60' y='8' width='14' height='4' rx='2' transform='rotate(-40 67 10)'/%3E%3Crect x='96' y='40' width='14' height='4' rx='2' transform='rotate(70 103 42)'/%3E%3Crect x='30' y='60' width='14' height='4' rx='2' transform='rotate(-15 37 62)'/%3E%3Crect x='76' y='82' width='14' height='4' rx='2' transform='rotate(45 83 84)'/%3E%3Crect x='8' y='100' width='14' height='4' rx='2' transform='rotate(-60 15 102)'/%3E%3Crect x='52' y='106' width='14' height='4' rx='2' transform='rotate(10 59 108)'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 120px 120px;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg%3E%3Crect x='10' y='14' width='14' height='4' rx='2' transform='rotate(30 17 16)'/%3E%3Crect x='60' y='8' width='14' height='4' rx='2' transform='rotate(-40 67 10)'/%3E%3Crect x='96' y='40' width='14' height='4' rx='2' transform='rotate(70 103 42)'/%3E%3Crect x='30' y='60' width='14' height='4' rx='2' transform='rotate(-15 37 62)'/%3E%3Crect x='76' y='82' width='14' height='4' rx='2' transform='rotate(45 83 84)'/%3E%3Crect x='8' y='100' width='14' height='4' rx='2' transform='rotate(-60 15 102)'/%3E%3Crect x='52' y='106' width='14' height='4' rx='2' transform='rotate(10 59 108)'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 120px 120px;
+}
+
+/* Menu board: one line per item, name, a dotted leader, the price. */
+.is-style-menu-board .menu-board__group + .menu-board__group { margin-block-start: var(--wp--preset--spacing--50, 2rem); }
+.is-style-menu-board .menu-board__row { gap: 0.5rem; align-items: baseline; margin-block: 0.35rem 0; }
+.is-style-menu-board .menu-board__name { display: flex; flex: 1 1 auto; align-items: baseline; margin: 0; min-width: 0; }
+.is-style-menu-board .menu-board__name::after {
+	content: "";
+	flex: 1 1 1.5rem;
+	min-width: 1.5rem;
+	margin-inline: 0.5rem 0;
+	border-block-end: 2px dotted currentColor;
+	opacity: 0.45;
+	transform: translateY(-0.3em);
+}
+.is-style-menu-board .menu-board__price { margin: 0; flex: none; font-variant-numeric: tabular-nums; font-weight: 600; }
+.is-style-menu-board .menu-board__chips { margin-block: 0.15rem 0; }
+
+/* Chips: a short list of tags as pills. Diet labels carry a mark, so the difference is
+   not colour alone. */
+.wp-block-list.is-style-chips { display: flex; flex-wrap: wrap; gap: 0.375rem; list-style: none; padding: 0; margin-block: 0.5rem 0; }
+.wp-block-list.is-style-chips li {
+	margin: 0;
+	padding: 0.15em 0.7em;
+	border: 1px solid currentColor;
+	border-radius: 999px;
+	font-size: 0.8125rem;
+	line-height: 1.5;
+}
+.wp-block-list.is-style-chips li.is-diet::before { content: "✓\00a0"; content: "✓\00a0" / ""; }
+
+/* Open now: empty (and hidden) until the script has read the hours. */
+.is-style-open-status:empty { display: none; }
+.is-style-open-status { display: flex; align-items: center; gap: 0.5em; font-weight: 600; }
+.is-style-open-status::before { content: ""; width: 0.6em; height: 0.6em; border-radius: 50%; background: currentColor; opacity: 0.5; flex: none; }
+.is-style-open-status[data-state="open"]::before { opacity: 1; background: var(--wp--preset--color--accent); }
+.editor-styles-wrapper .is-style-open-status:empty { display: flex; }
+
+/* Journal cards and Contact Form 7. */
+.wp-block-post-template .wp-block-post-title a { text-decoration: none; }
+.wp-block-post-template .wp-block-post-date { font-size: 0.875rem; color: var(--wp--preset--color--text-muted); }
+
+.wpcf7 { max-width: 40rem; margin-top: 2rem; }
+.wpcf7 form > p { margin: 0 0 1.25rem; }
+.wpcf7 label { display: block; font-weight: 600; color: var(--wp--preset--color--text-strong); }
+.wpcf7 input:not([type="submit"]), .wpcf7 textarea {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 2.75rem;
+	margin-top: 0.375rem;
+	padding: 0.625rem 0.75rem;
+	font: inherit;
+	font-weight: 400;
+	color: var(--wp--preset--color--text-strong);
+	background: var(--wp--preset--color--bg);
+	border: 1px solid var(--wp--preset--color--text-muted);
+	border-radius: 4px;
+}
+.wpcf7 textarea { height: 10rem; }
+.wpcf7 input:focus-visible, .wpcf7 textarea:focus-visible { outline: 2px solid var(--wp--preset--color--accent-dark); outline-offset: 1px; }
+.wpcf7 input[type="submit"] {
+	min-height: 2.75rem;
+	padding: 0.625rem 1.5rem;
+	font: inherit;
+	font-weight: 600;
+	color: var(--wp--preset--color--bg);
+	background: var(--wp--preset--color--accent-dark);
+	border: 0;
+	border-radius: 999px;
+	cursor: pointer;
+}
+.wpcf7 .wpcf7-not-valid-tip { margin-top: 0.25rem; font-size: 0.875rem; color: var(--wp--preset--color--accent-dark); }
+.wpcf7 form .wpcf7-response-output { margin: 1rem 0 0; padding: 0.625rem 0.75rem; border-radius: 4px; }
+.wpcf7 .wpcf7-spinner { display: block; margin: 0.5rem 0 0; }
+
+/* Optional plugins. Their own settings decide colours, shapes and position: the
+   theme passes on its font and keeps the footer clear, nothing more. */
+.cky-consent-container .cky-consent-bar,
+.cky-consent-container .cky-btn,
+.trp-language-switcher.trp-floating-switcher { font-family: inherit; }
+/* Both float over the page's last lines: leave them room under the footer. */
+body:has(.cky-btn-revisit-wrapper, .trp-floating-switcher) .site-footer { padding-block-end: 4.5rem; }
+.woo-variation-swatches .variable-items-wrapper .variable-item:focus-visible { outline: 2px solid var(--wp--preset--color--accent-dark); outline-offset: 2px; }
